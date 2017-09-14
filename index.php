@@ -2,7 +2,6 @@
 require_once "db.php";
 // first select subjects for divs at the bottom
 $sel = $con->query("SELECT Subject FROM essays GROUP BY Subject");
-$defaultSubjects = ['Physics','Chemistry','Biology']; //subjects that are added by default
 ?>
 <html lang="en">
 	<head>
@@ -15,39 +14,9 @@ $defaultSubjects = ['Physics','Chemistry','Biology']; //subjects that are added 
 		<div id="wrapper">
 			<h1 class="science_base">Knowledge Base</h1>
 			<input type="button" class="write_an_essay" onclick="openDiv('write_an_essay_div')" value="Write an essay">
-			<div class="subject_d">
-				<div class="subject_name">
-					<span>Physics</span>
-				</div>
-				<div class="essays">
-					<ul>
-					</ul>
-				</div>
-			</div>			
-			<div class="subject_d">
-				<div class="subject_name">
-					<span>Chemistry</span>
-				</div>
-				<div class="essays">
-					<ul>
-					</ul>
-				</div>
-			</div>			
-			<div class="subject_d">
-				<div class="subject_name">
-					<span>Biology</span>
-				</div>
-				<div class="essays">
-					<ul>
-					</ul>
-				</div>
-			</div>
 			<?php
 				while ($row = $sel->fetch()) {
 					$Subject = $row["Subject"];
-					if (in_array($Subject, $defaultSubjects)) {
-						continue;
-					}
 					?>
 					<div class="subject_d">
 						<div class="subject_name">
